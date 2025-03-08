@@ -10,10 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @Author: kerwin
- * @CreateTime: 2023-07-15  08:57
- */
+
 @RestController
 @RequestMapping("/user")
 public class UserController {

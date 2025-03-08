@@ -1,8 +1,6 @@
 package com.lxd.common.constants;
 
-/**
- * @Author: kerwin
- */
+
 public interface ServiceNames {
 
     String USER_APP = "user-app";

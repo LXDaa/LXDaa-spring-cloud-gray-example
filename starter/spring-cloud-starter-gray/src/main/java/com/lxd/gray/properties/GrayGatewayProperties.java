@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 @Configuration
 @RefreshScope
-@ConfigurationProperties("kerwin.tool.gray.gateway")
+@ConfigurationProperties("lxd.tool.gray.gateway")
 public class GrayGatewayProperties {
 
     /**

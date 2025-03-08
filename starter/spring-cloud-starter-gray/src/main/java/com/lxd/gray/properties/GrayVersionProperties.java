@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 @Data
 @Configuration
 @RefreshScope
-@ConfigurationProperties("kerwin.tool.gray.version")
+@ConfigurationProperties("lxd.tool.gray.version")
 public class GrayVersionProperties {
     /**
      * 当前线上版本号

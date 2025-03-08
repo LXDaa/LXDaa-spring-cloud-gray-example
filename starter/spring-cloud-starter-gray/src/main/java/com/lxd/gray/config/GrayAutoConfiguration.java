@@ -20,7 +20,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 // 可以通过@ConditionalOnProperty设置是否开启灰度自动配置 默认是不加载的
-@ConditionalOnProperty(value = "kerwin.tool.gray.load",havingValue = "true")
+@ConditionalOnProperty(value = "lxd.tool.gray.load",havingValue = "true")
 @EnableConfigurationProperties(GrayVersionProperties.class)
 public class GrayAutoConfiguration {
 
