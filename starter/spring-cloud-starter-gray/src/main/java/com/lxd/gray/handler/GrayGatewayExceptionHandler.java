@@ -1,6 +1,6 @@
 package com.lxd.gray.handler;
 
-import com.lxd.gray.holder.GrayFlagRequestHolder;
+import com.lxd.gray.holder.GrayReleaseContextHolder;
 import org.springframework.core.Ordered;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpResponse;
@@ -14,7 +14,7 @@ public class GrayGatewayExceptionHandler implements WebExceptionHandler, Ordered
     @Override
     public Mono<Void> handle(ServerWebExchange exchange, Throwable ex) {
         // 请求执行完必须要remore当前线程的ThreadLocal
-        GrayFlagRequestHolder.remove();
+        GrayReleaseContextHolder.remove();
         ServerHttpResponse response = exchange.getResponse();
         if (ex instanceof ResponseStatusException) {
             // 处理 ResponseStatusException 异常

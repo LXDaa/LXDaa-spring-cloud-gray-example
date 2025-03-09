@@ -2,9 +2,8 @@ package com.lxd.gray.filter;
 
 import com.lxd.gray.constant.GrayConstant;
 import com.lxd.gray.enums.GrayStatusEnum;
-import com.lxd.gray.holder.GrayFlagRequestHolder;
+import com.lxd.gray.holder.GrayReleaseContextHolder;
 import com.lxd.gray.properties.GrayGatewayProperties;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -14,12 +13,13 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Objects;
 
 
 public class GrayGatewayBeginFilter implements GlobalFilter, Ordered {
-    @Autowired
+    @Resource
     private GrayGatewayProperties grayGatewayProperties;
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
@@ -32,7 +32,7 @@ public class GrayGatewayBeginFilter implements GlobalFilter, Ordered {
                 grayStatusEnum = GrayStatusEnum.GRAY;
             }
         }
-        GrayFlagRequestHolder.setGrayTag(grayStatusEnum);
+        GrayReleaseContextHolder.setGrayTag(grayStatusEnum);
         ServerHttpRequest newRequest = exchange.getRequest().mutate()
                 .header(GrayConstant.GRAY_HEADER, grayStatusEnum.getVal())
                 .build();

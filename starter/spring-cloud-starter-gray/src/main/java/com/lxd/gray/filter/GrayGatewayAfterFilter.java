@@ -1,6 +1,6 @@
 package com.lxd.gray.filter;
 
-import com.lxd.gray.holder.GrayFlagRequestHolder;
+import com.lxd.gray.holder.GrayReleaseContextHolder;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -12,7 +12,7 @@ public class GrayGatewayAfterFilter implements GlobalFilter, Ordered {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         // 请求执行完必须要remore当前线程的ThreadLocal
-        GrayFlagRequestHolder.remove();
+        GrayReleaseContextHolder.remove();
         return chain.filter(exchange);
     }
 

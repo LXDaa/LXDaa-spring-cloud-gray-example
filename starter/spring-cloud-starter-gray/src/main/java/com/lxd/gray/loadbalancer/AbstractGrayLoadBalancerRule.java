@@ -2,21 +2,21 @@ package com.lxd.gray.loadbalancer;
 
 import com.alibaba.cloud.nacos.ribbon.NacosServer;
 import com.lxd.gray.enums.GrayStatusEnum;
-import com.lxd.gray.holder.GrayFlagRequestHolder;
+import com.lxd.gray.holder.GrayReleaseContextHolder;
 import com.lxd.gray.properties.GrayVersionProperties;
 import com.netflix.loadbalancer.AbstractLoadBalancerRule;
 import com.netflix.loadbalancer.ILoadBalancer;
 import com.netflix.loadbalancer.Server;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 
 public abstract class AbstractGrayLoadBalancerRule extends AbstractLoadBalancerRule {
-    @Autowired
+    @Resource
     private GrayVersionProperties grayVersionProperties;
 
     @Value("${spring.cloud.nacos.discovery.metadata.version}")
@@ -56,7 +56,7 @@ public abstract class AbstractGrayLoadBalancerRule extends AbstractLoadBalancerR
             return result;
         }
         String currentVersion = metaVersion;
-        GrayStatusEnum grayStatusEnum = GrayFlagRequestHolder.getGrayTag();
+        GrayStatusEnum grayStatusEnum = GrayReleaseContextHolder.getGrayTag();
         if (grayStatusEnum != null) {
             switch (grayStatusEnum) {
                 case ALL:

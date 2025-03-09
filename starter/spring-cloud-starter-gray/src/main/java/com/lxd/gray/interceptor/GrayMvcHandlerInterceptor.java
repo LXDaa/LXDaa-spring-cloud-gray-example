@@ -2,7 +2,7 @@ package com.lxd.gray.interceptor;
 
 import com.lxd.gray.constant.GrayConstant;
 import com.lxd.gray.enums.GrayStatusEnum;
-import com.lxd.gray.holder.GrayFlagRequestHolder;
+import com.lxd.gray.holder.GrayReleaseContextHolder;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -16,7 +16,7 @@ public class GrayMvcHandlerInterceptor implements HandlerInterceptor {
         String grayTag = request.getHeader(GrayConstant.GRAY_HEADER);
         // 如果HttpHeader中灰度标记存在，则将灰度标记放到holder中，如果需要就传递下去
         if (grayTag!= null) {
-            GrayFlagRequestHolder.setGrayTag(GrayStatusEnum.getByVal(grayTag));
+            GrayReleaseContextHolder.setGrayTag(GrayStatusEnum.getByVal(grayTag));
         }
         return true;
     }
@@ -26,6 +26,6 @@ public class GrayMvcHandlerInterceptor implements HandlerInterceptor {
     }
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        GrayFlagRequestHolder.remove();
+        GrayReleaseContextHolder.remove();
     }
 }
