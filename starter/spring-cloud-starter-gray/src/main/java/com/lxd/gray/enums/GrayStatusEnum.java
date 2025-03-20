@@ -1,6 +1,8 @@
 package com.lxd.gray.enums;
 
 
+import lombok.Getter;
+
 public enum GrayStatusEnum {
     ALL("ALL","可以调用全部版本的服务"),
     PROD("PROD","只能调用生产版本的服务"),
@@ -9,15 +11,12 @@ public enum GrayStatusEnum {
         this.val = val;
         this.desc = desc;
     }
-    private String val;
-    private String desc;
-    public String getVal() {
-        return val;
-    }
+    @Getter
+    private final String val;
+    private final String desc;
+
     public static GrayStatusEnum getByVal(String val){
-        if(val == null){
-            return null;
-        }
+
         for (GrayStatusEnum value : values()) {
             if(value.val.equals(val)){
                 return value;

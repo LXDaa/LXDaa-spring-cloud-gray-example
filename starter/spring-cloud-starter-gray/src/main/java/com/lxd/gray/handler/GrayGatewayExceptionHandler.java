@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono;
 public class GrayGatewayExceptionHandler implements WebExceptionHandler, Ordered {
     @Override
     public Mono<Void> handle(ServerWebExchange exchange, Throwable ex) {
-        // 请求执行完必须要remore当前线程的ThreadLocal
+        // 请求执行完必须要remove当前线程的ThreadLocal
         GrayReleaseContextHolder.remove();
         ServerHttpResponse response = exchange.getResponse();
         if (ex instanceof ResponseStatusException) {

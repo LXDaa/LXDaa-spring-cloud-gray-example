@@ -29,6 +29,7 @@ public class UserController {
 
     @GetMapping("/{userNo}")
     public ApiResult<String> getUserName(@PathVariable("userNo") String userNo){
+        System.out.println(">>>>>> getUserName方法调用");
         return ApiResult.success(userMap.get(userNo) + " - port="+port + " - mateVersion="+metaVersion);
     }
 }

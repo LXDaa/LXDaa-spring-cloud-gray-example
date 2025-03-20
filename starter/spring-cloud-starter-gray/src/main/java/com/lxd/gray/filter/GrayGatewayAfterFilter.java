@@ -11,8 +11,9 @@ public class GrayGatewayAfterFilter implements GlobalFilter, Ordered {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        // 请求执行完必须要remore当前线程的ThreadLocal
+        // 请求执行完必须要remove当前线程的ThreadLocal
         GrayReleaseContextHolder.remove();
+        System.out.println(">>>>>> GrayGatewayAfterFilter");
         return chain.filter(exchange);
     }
 

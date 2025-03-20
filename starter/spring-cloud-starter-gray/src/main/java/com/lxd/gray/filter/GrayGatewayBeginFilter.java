@@ -39,6 +39,7 @@ public class GrayGatewayBeginFilter implements GlobalFilter, Ordered {
         ServerWebExchange newExchange = exchange.mutate()
                 .request(newRequest)
                 .build();
+        System.out.println(">>>>>> 进入GrayGatewayBeginFilter");
         return chain.filter(newExchange);
     }
 

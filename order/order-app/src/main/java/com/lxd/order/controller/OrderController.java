@@ -28,10 +28,12 @@ public class OrderController {
 
     @GetMapping("/{orderNo}")
     public ApiResult getOrderInfo(@PathVariable("orderNo") String orderNo){
+        System.out.println(">>>>>> getOrderInfo方法调用");
         Map<String, String> resultData = initData().get(orderNo);
         resultData.put("port",port);
         resultData.put("metaVersion",mateVersion);
         if(resultData != null){
+            System.out.println(">>>>>> 发起Feign调用");
             ApiResult<String> apiResult = userClient.getUserName(resultData.get("userNo"));
             resultData.put("userName",apiResult.getData());
         }

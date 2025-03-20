@@ -15,17 +15,21 @@ public class GrayMvcHandlerInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String grayTag = request.getHeader(GrayConstant.GRAY_HEADER);
         // 如果HttpHeader中灰度标记存在，则将灰度标记放到holder中，如果需要就传递下去
-        if (grayTag!= null) {
+        System.out.println(">>>>>> " + request.getRequestURI() + " ==> GrayMvcHandlerInterceptor#preHandle()");
+        if (grayTag != null) {
             GrayReleaseContextHolder.setGrayTag(GrayStatusEnum.getByVal(grayTag));
         }
         return true;
     }
+
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
 
     }
+
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        System.out.println(">>>>>> " + request.getRequestURI() + " ==> GrayMvcHandlerInterceptor#afterCompletion()");
         GrayReleaseContextHolder.remove();
     }
 }

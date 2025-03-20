@@ -14,7 +14,8 @@ public class GrayFeignRequestInterceptor implements RequestInterceptor {
     public void apply(RequestTemplate template) {
         // 如果灰度标记存在，将灰度标记通过HttpHeader传递下去
         GrayStatusEnum grayStatusEnum = GrayReleaseContextHolder.getGrayTag();
-        if (grayStatusEnum != null ) {
+        System.out.println(">>>>>> " + template.request().url() + " ==> GrayFeignRequestInterceptor");
+        if (grayStatusEnum != null) {
             template.header(GrayConstant.GRAY_HEADER, Collections.singleton(grayStatusEnum.getVal()));
         }
     }

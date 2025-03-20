@@ -41,7 +41,7 @@ public class GrayGatewayProperties {
     private List<String> grayCityList = new ArrayList<>();
 
     /**
-     * 使用灰度版本用户编号数组（我们系统不会在网关获取用户编号这种方法如果需要可以自己实现一下）
+     * 使用灰度版本用户编号数组
      */
     private List<String> grayUserNoList = new ArrayList<>();
 }
