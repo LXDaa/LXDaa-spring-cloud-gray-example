@@ -33,27 +33,4 @@ spring:
             - StripPrefix=1  # 去掉请求路径的前缀
 
 
-#kerwin:
-#  tool:
-#    gray:
-#      load: true
-#      gateway:
-#        enabled: true
-#        grayHeadKey: gray
-#        grayHeadValue: gray-996
-#        grayIPList:
-#          - '127.0.0.1'
-#        grayCityList:
-#          - '本地'
-#      version:
-#        prodVersion: V1
-#        grayVersion: V2
-
-
-#user-app:
-#  ribbon:
-#    NFLoadBalancerRuleClassName: com.kerwin.gray.loadbalancer.GrayRoundRobinRule
-#order-app:
-#  ribbon:
-#    NFLoadBalancerRuleClassName: com.kerwin.gray.loadbalancer.GrayRoundRobinRule
 
